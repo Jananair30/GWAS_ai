@@ -5,7 +5,7 @@ import streamlit as st
 from gwasMethods import gwasMethods as gwas
 
 client= OpenAI(
-    api_key=st.secrets("OPEN_API_KEY")
+    api_key = st.secrets["OPEN_API_KEY"]
     )
 
 def display_image(image_url):
