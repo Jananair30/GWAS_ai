@@ -5,6 +5,18 @@ import streamlit as st
 import requests
 from gwasMethods import gwasMethods as gwas
 
+# Set the page background color to light blue
+st.markdown(
+    """
+    <style>
+    body {
+        background-color: #f0f5f5;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 client = OpenAI(api_key=st.secrets["OPEN_API_KEY"])
 
 def display_image(image_url):
@@ -15,6 +27,9 @@ def display_image(image_url):
 
 def main():
     st.title("Gym Workout Activity Suggestor (GWAS.ai)")
+
+    # Add buttons for different user options
+    user_option = st.radio("Select User Type:", ("Students", "Athletes", "Sport Teacher", "Random User"))
 
     # User input for workout suggestion
     workout_input = st.text_input("Enter your workout goal or body part focus:", "")
