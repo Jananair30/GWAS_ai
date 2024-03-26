@@ -32,10 +32,14 @@ def create_sidebar_navigation():
         st.sidebar.header("GWAS")
         st.sidebar.subheader("Gwas Sections")
         
-    if st.sidebar.button("History"):
-        st.sidebar.write("User History:")
-        for item in st.session_state.history:
-            st.sidebar.write(item)
+        if not st.session_state.history_button_added:
+            st.sidebar.button("History")  # Add a single "History" button
+            st.session_state.history_button_added = True
+
+            st.sidebar.write("User History:")
+            for item in st.session_state.history:
+                st.sidebar.write(item)
+
         
 
 def main():
