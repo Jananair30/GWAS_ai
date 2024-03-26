@@ -5,6 +5,16 @@ import streamlit as st
 import requests
 from gwasMethods import gwasMethods as gwas
 
+st.markdown(
+    """
+    <style>
+    body {
+        background-color: #ADD8E6;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 
 client = OpenAI(api_key=st.secrets["OPEN_API_KEY"])
 
@@ -20,8 +30,8 @@ def main():
     # Add age range input
     age_range = st.slider("Select Your Age Range:", 10, 100, (20, 50))
 
-    # Create a beta_expander for user options
-    with st.beta_expander("User Options", expanded=False):
+    # Create an expander for user options
+    with st.expander("User Options", expanded=False):
         user_option = st.radio("Select User Type:", ("Students", "Athletes", "Sport Teacher", "Random User"))
 
     # User input for workout suggestion
