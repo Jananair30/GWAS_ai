@@ -60,7 +60,7 @@ def main():
 
         update_history(f"Generated workout suggestion for: {workout_input}")
 
-    if st.button("Generate Cover Image"):
+    if st.button("Generate answer with Image"):
         st.write("Cover Image:")
         display_image(image_url)
 
