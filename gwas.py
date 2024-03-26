@@ -2,6 +2,7 @@ import os
 from openai import OpenAI
 from IPython.display import Image
 import streamlit as st
+import requests
 from gwasMethods import gwasMethods as gwas
 
 client= OpenAI(
