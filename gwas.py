@@ -5,7 +5,6 @@ import streamlit as st
 import requests
 from gwasMethods import gwasMethods as gwas
 
-# Set the page background color to light blue
 st.markdown(
     """
     <style>
