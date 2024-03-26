@@ -32,6 +32,9 @@ def create_sidebar_navigation():
         st.sidebar.header("GWAS")
         st.sidebar.subheader("Gwas Sections")
         
+        if "history_button_added" not in st.session_state:
+            st.session_state.history_button_added = False  # Initialize the history_button_added attribute
+
         if not st.session_state.history_button_added:
             st.sidebar.button("History")  # Add a single "History" button
             st.session_state.history_button_added = True
@@ -43,6 +46,9 @@ def create_sidebar_navigation():
         
 
 def main():
+    if "history" not in st.session_state:
+        st.session_state.history = []
+        
     create_sidebar_navigation()  # Call the function to create the sidebar navigation
 
     st.title("Gym Workout Activity Suggestor (GWAS.ai)")
