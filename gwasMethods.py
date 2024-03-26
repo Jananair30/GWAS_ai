@@ -1,6 +1,6 @@
 class gwasMethods:
 
-    def gym_ai(msg,client):
+    def gym_ai(self,msg,client):
         gym_response = client.chat.completions.create(
         model="gpt-3.5-turbo",
         messages=[
@@ -21,7 +21,7 @@ class gwasMethods:
 
         return gym
 
-    def cover_ai(msg,client):
+    def cover_ai(self,msg,client):
         cover_response = client.images.generate(
         model="dall-e-3",
         prompt=f"{msg}",
@@ -35,7 +35,7 @@ class gwasMethods:
 
         return image_url
 
-    def design_ai(msg,client):
+    def design_ai(self,msg,client):
         design_response = client.chat.completions.create(
         model="gpt-3.5-turbo",
         messages=[
