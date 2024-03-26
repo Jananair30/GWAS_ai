@@ -20,9 +20,9 @@ def main():
     workout_input = st.text_input("Enter your workout goal or body part focus:", "")
     if workout_input:
 
-        workout_suggestion = gwas.gym_ai(workout_input)
-        cover_prompt = gwas.design_ai(workout)
-        image_url = gwas.cover_ai(design)
+        workout_suggestion = gwas.gym_ai(workout_input.client)
+        cover_prompt = gwas.design_ai(workout.client)
+        image_url = gwas.cover_ai(design.client)
 
         st.write("Workout Suggestion:")
         st.write(workout_suggestion)
