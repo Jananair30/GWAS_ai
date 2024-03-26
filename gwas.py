@@ -21,7 +21,7 @@ def main():
     if workout_input:
 
         workout_suggestion = gwas.gym_ai(workout_input,client)
-        cover_prompt = gwas.design_ai(workout,client)
+        cover_prompt = gwas.design_ai(workout_input,client)
         image_url = gwas.cover_ai(design,client)
 
         st.write("Workout Suggestion:")
