@@ -14,15 +14,15 @@ def display_image(image_url):
     st.image(img)
 
 def main():
-    st.title("GWAS Workout and Design Assistant")
+    st.title("Gym Workout Activity Suggestor (GWAS.ai)")
 
     # User input for workout suggestion
     workout_input = st.text_input("Enter your workout goal or body part focus:", "")
     if workout_input:
 
-        workout_suggestion = gwas.gym_ai(workout_input.client)
-        cover_prompt = gwas.design_ai(workout.client)
-        image_url = gwas.cover_ai(design.client)
+        workout_suggestion = gwas.gym_ai(client)
+        cover_prompt = gwas.design_ai(client)
+        image_url = gwas.cover_ai(client)
 
         st.write("Workout Suggestion:")
         st.write(workout_suggestion)
