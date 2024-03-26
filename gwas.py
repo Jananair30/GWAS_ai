@@ -1,6 +1,7 @@
 import os
 from openai import OpenAI
 from PIL import Image
+from io import BytesIO
 import streamlit as st
 import requests
 from gwasMethods import gwasMethods as gwas
@@ -12,6 +13,8 @@ client= OpenAI(
 def display_image(image_url):
     response = requests.get(image_url)
     img = Image.open(response.content)
+    image_stream = BytesIO(image_data)
+    img = Image.open(image_stream)
     st.image(img)
 
 def main():
