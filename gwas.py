@@ -5,16 +5,18 @@ import streamlit as st
 import requests
 from gwasMethods import gwasMethods as gwas
 
-st.markdown(
-    """
+css = """
     <style>
     body {
         background-color: #ADD8E6;
     }
+    .st-eb {
+        background-color: #FFFFFF;   
+    }
     </style>
-    """,
-    unsafe_allow_html=True
-)
+"""
+
+st.write(css, unsafe_allow_html=True)
 
 client = OpenAI(api_key=st.secrets["OPEN_API_KEY"])
 
