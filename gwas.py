@@ -15,10 +15,6 @@ if "history" not in st.session_state:
 def update_history(action):
     st.session_state.history.append(action)
 
-# Function to delete a specific history item
-def delete_history(index):
-    del st.session_state.history[index]
-
 # Function to display an image from a URL
 def display_image(image_url):
     response = requests.get(image_url, stream=True)
@@ -47,12 +43,8 @@ def create_sidebar_navigation():
 
         if st.session_state.history_button_added:
             st.sidebar.write("User History:")
-            for i, item in enumerate(st.session_state.history):
-                col1, col2 = st.columns([0.9, 0.1])
-                col1.write(item)
-                with col2:
-                    if st.button("❌", key=f"delete_{i}"):
-                        delete_history(i)
+            for item in st.session_state.history:
+                st.sidebar.write(item)
 
         
 
