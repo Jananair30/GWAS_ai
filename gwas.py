@@ -21,35 +21,34 @@ def display_image(image_url):
         img = Image.open(response.raw)
         st.image(img, caption='Cover Image')
 
-if st.session_state.navigation:
+def create_sidebar_navigation():
+    if "navigation" not in st.session_state:
+        st.session_state.navigation = False  
+
+    if st.button("☰", key="navigation_button"):
+        st.session_state.navigation = not st.session_state.navigation 
+
+    if st.session_state.navigation:
         st.sidebar.header("GWAS")
         st.sidebar.subheader("Gwas Sections")
-        st.sidebar.markdown("---")  # Add a horizontal line for visual separation
         
-if st.sidebar.button("Delete History"):
-        st.session_state.history = []  # Clear the history
-        st.sidebar.write("History deleted.")
-        st.sidebar.markdown("---")  # Add a horizontal line for visual separation
+    if st.sidebar.button("History"):
         st.sidebar.write("User History:")
         for item in st.session_state.history:
             st.sidebar.write(item)
         
 
 def main():
-    if "history" not in st.session_state:
-        st.session_state.history = []
+    create_sidebar_navigation()  # Call the function to create the sidebar navigation
 
-        create_sidebar_navigation()  # Call the function to create the sidebar navigation
+    st.title("Gym Workout Activity Suggestor (GWAS.ai)")
 
-        st.title("Gym Workout Activity Suggestor (GWAS.ai)")
+    age_range = st.slider("Select Your Age Range:", 10, 100, (20, 30))
 
-        age_range = st.slider("Select Your Age Range:", 10, 100, (20, 30))
+    with st.expander("User Options", expanded=False):
+        user_option = st.radio("Select User Type:", ("Students", "Athletes", "Sport Teacher", "Random User"))
 
-        with st.expander("User Options", expanded=False):
-            user_option = st.radio("Select User Type:", ("Students", "Athletes", "Sport Teacher", "Random User"))
-
-        workout_input = st.text_input("Enter your workout goal or body part focus:", "")
-
+    workout_input = st.text_input("Enter your workout goal or body part focus:", "")
     if workout_input:
         workout_suggestion = gwas.gym_ai(workout_input, client)
         design_prompt = gwas.design_ai(workout_input, client)
@@ -61,7 +60,7 @@ def main():
 
         update_history(f"Generated workout suggestion for: {workout_input}")
 
-    if st.button("Generate Answer with image"):
+    if st.button("Generate Cover Image"):
         st.write("Cover Image:")
         display_image(image_url)
 
