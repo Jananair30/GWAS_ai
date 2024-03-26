@@ -14,11 +14,11 @@ def display_image(image_url):
         st.image(img, caption='Cover Image')
 
 def create_sidebar_navigation():
+    if "navigation" not in st.session_state:
+        st.session_state.navigation = False  # Initialize the navigation attribute
+
     if st.button("Toggle Navigation"):
-        if "navigation" not in st.session_state:
-            st.session_state.navigation = True
-        else:
-            st.session_state.navigation = not st.session_state.navigation
+        st.session_state.navigation = not st.session_state.navigation  # Toggle the navigation attribute
 
     if st.session_state.navigation:
         st.sidebar.header("Navigation")
