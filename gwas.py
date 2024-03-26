@@ -11,7 +11,6 @@ client = OpenAI(api_key=st.secrets["OPEN_API_KEY"])
 if "history" not in st.session_state:
     st.session_state.history = []
 
-
 def update_history(action):
     st.session_state.history.append(action)
 
@@ -30,18 +29,20 @@ def create_sidebar_navigation():
         st.session_state.navigation = not st.session_state.navigation  # Toggle the navigation attribute
 
     if st.session_state.navigation:
-        st.sidebar.header("Navigation")
-        st.sidebar.subheader("Sections")
-        st.sidebar.write("Link 1")
-        st.sidebar.write("Link 2")
-        st.sidebar.write("Link 3")
+        st.sidebar.header("GWAS")
+        st.sidebar.subheader("Gwas Sections")
+        if st.sidebar.button("History"):
+            st.sidebar.write("User History:")
+            for item in st.session_state.history:
+                st.sidebar.write(item)
+        
 
 def main():
     create_sidebar_navigation()  # Call the function to create the sidebar navigation
 
     st.title("Gym Workout Activity Suggestor (GWAS.ai)")
 
-    age_range = st.slider("Select Your Age Range:", 10, 100, (20, 50))
+    age_range = st.slider("Select Your Age Range:", 10, 100, (20, 30))
 
     with st.expander("User Options", expanded=False):
         user_option = st.radio("Select User Type:", ("Students", "Athletes", "Sport Teacher", "Random User"))
