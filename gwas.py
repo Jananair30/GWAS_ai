@@ -8,9 +8,6 @@ from gwasMethods import gwasMethods as gwas
 client = OpenAI(api_key=st.secrets["OPEN_API_KEY"])
 
 
-if "history" not in st.session_state:
-    st.session_state.history = []
-
 def update_history(action):
     st.session_state.history.append(action)
 
@@ -21,18 +18,24 @@ def display_image(image_url):
         img = Image.open(response.raw)
         st.image(img, caption='Cover Image')
 
-if st.session_state.navigation:
+def create_sidebar_navigation():
+    if "navigation" not in st.session_state:
+        st.session_state.navigation = False  # Initialize the navigation attribute
+
+    if st.button("☰", key="navigation_button"):
+        st.session_state.navigation = not st.session_state.navigation 
+
+    if st.session_state.navigation:
         st.sidebar.header("GWAS")
         st.sidebar.subheader("Gwas Sections")
-        st.sidebar.markdown("---")  # Add a horizontal line for visual separation
-        
-if st.sidebar.button("Delete History"):
-        st.session_state.history = []  # Clear the history
-        st.sidebar.write("History deleted.")
-        st.sidebar.markdown("---")  # Add a horizontal line for visual separation
-        st.sidebar.write("User History:")
-        for item in st.session_state.history:
-            st.sidebar.write(item)
+        st.sidebar.markdown("---")  
+    if st.sidebar.button("Delete History"):
+            st.session_state.history = []  
+            st.sidebar.write("History deleted.")
+            st.sidebar.markdown("---")  
+            st.sidebar.write("User History:")
+            for item in st.session_state.history:
+                st.sidebar.write(item)
         
 
 def main():
