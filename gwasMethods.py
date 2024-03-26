@@ -35,7 +35,7 @@ class gwasMethods:
 
         return image_url
 
-    def design_ai(msgclient):
+    def design_ai(msg,client):
         design_response = client.chat.completions.create(
         model="gpt-3.5-turbo",
         messages=[
