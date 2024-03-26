@@ -23,15 +23,19 @@ def display_image(image_url):
 
 def create_sidebar_navigation():
     if "navigation" not in st.session_state:
-        st.session_state.navigation = False  # Initialize the navigation attribute
+        st.session_state.navigation = False  
+
+    if st.button("☰", key="navigation_button"):
+        st.session_state.navigation = not st.session_state.navigation 
 
     if st.session_state.navigation:
         st.sidebar.header("GWAS")
         st.sidebar.subheader("Gwas Sections")
-        if st.sidebar.button("History"):
-            st.sidebar.write("User History:")
-            for item in st.session_state.history:
-                st.sidebar.write(item)
+        
+    if st.sidebar.button("History"):
+        st.sidebar.write("User History:")
+        for item in st.session_state.history:
+            st.sidebar.write(item)
         
 
 def main():
