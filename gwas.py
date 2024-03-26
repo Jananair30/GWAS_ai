@@ -1,6 +1,6 @@
 import os
 from openai import OpenAI
-from IPython.display import Image
+from PIL import Image
 import streamlit as st
 import requests
 from gwasMethods import gwasMethods as gwas
