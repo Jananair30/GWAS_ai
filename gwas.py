@@ -5,19 +5,6 @@ import streamlit as st
 import requests
 from gwasMethods import gwasMethods as gwas
 
-css = """
-    <style>
-    body {
-        background-color: #ADD8E6;
-    }
-    .st-eb {
-        background-color: #FFFFFF;   
-    }
-    </style>
-"""
-
-st.write(css, unsafe_allow_html=True)
-
 client = OpenAI(api_key=st.secrets["OPEN_API_KEY"])
 
 def display_image(image_url):
@@ -26,17 +13,30 @@ def display_image(image_url):
         img = Image.open(response.raw)
         st.image(img, caption='Cover Image')
 
+def create_sidebar_navigation():
+    if st.button("Toggle Navigation"):
+        if "navigation" not in st.session_state:
+            st.session_state.navigation = True
+        else:
+            st.session_state.navigation = not st.session_state.navigation
+
+    if st.session_state.navigation:
+        st.sidebar.header("Navigation")
+        st.sidebar.subheader("Sections")
+        st.sidebar.write("Link 1")
+        st.sidebar.write("Link 2")
+        st.sidebar.write("Link 3")
+
 def main():
+    create_sidebar_navigation()  # Call the function to create the sidebar navigation
+
     st.title("Gym Workout Activity Suggestor (GWAS.ai)")
 
-    # Add age range input
     age_range = st.slider("Select Your Age Range:", 10, 100, (20, 50))
 
-    # Create an expander for user options
     with st.expander("User Options", expanded=False):
         user_option = st.radio("Select User Type:", ("Students", "Athletes", "Sport Teacher", "Random User"))
 
-    # User input for workout suggestion
     workout_input = st.text_input("Enter your workout goal or body part focus:", "")
     if workout_input:
         workout_suggestion = gwas.gym_ai(workout_input, client)
