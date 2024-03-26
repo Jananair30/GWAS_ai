@@ -57,8 +57,6 @@ def create_sidebar_navigation():
         
 
 def main():
-    if "history" not in st.session_state:
-        st.session_state.history = []
 
     create_sidebar_navigation()  # Call the function to create the sidebar navigation
 
