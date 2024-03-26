@@ -7,6 +7,15 @@ from gwasMethods import gwasMethods as gwas
 
 client = OpenAI(api_key=st.secrets["OPEN_API_KEY"])
 
+
+if "history" not in st.session_state:
+    st.session_state.history = []
+
+
+def update_history(action):
+    st.session_state.history.append(action)
+
+
 def display_image(image_url):
     response = requests.get(image_url, stream=True)
     if response.status_code == 200:
@@ -47,9 +56,13 @@ def main():
         st.write(workout_suggestion)
         st.divider()
 
+        update_history(f"Generated workout suggestion for: {workout_input}")
+
     if st.button("Generate Cover Image"):
         st.write("Cover Image:")
         display_image(image_url)
+
+        update_history("Generated cover image")
 
 if __name__ == "__main__":
     main()
