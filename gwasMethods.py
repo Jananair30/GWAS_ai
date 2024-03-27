@@ -23,10 +23,10 @@ class gwasMethods:
 
     def cover_ai(msg,client):
         cover_response = client.images.generate(
-        model="dall-e-3",
+        model="stable-diffusion-1",
         prompt=f"{msg}",
         size="1024x1024",
-        quality="standard",
+        quality="high",
         n=1,
         )
 
