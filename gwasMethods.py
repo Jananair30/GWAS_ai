@@ -23,7 +23,7 @@ class gwasMethods:
 
     def cover_ai(msg,client):
         cover_response = client.images.generate(
-        model="stable-diffusion-1",
+        model="iGPT-2-1.5B",
         prompt=f"{msg}",
         size="1024x1024",
         quality="standard",
