@@ -26,7 +26,7 @@ class gwasMethods:
         model="stable-diffusion-1",
         prompt=f"{msg}",
         size="1024x1024",
-        quality="high",
+        quality="standard",
         n=1,
         )
 
